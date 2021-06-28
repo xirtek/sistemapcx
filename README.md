@@ -4,5 +4,14 @@ El proyecto SistemaPCX fue desarrollado para presentarse en un certamen del ramo
 
 Consiste en un sistema web para venta de productos electrónicos. 
 
-## Recomendaciones
-- Utilizar Netbeans IDE 8.2
+## Instalar
+- Netbeans IDE 8.2
+- MySQL Workbench
+- XAMMP
+
+## Integrantes
+
+- Aarón Hidalgo
+- Antonio Olguín
+- Juan Román 
+- Sebastián Soto
