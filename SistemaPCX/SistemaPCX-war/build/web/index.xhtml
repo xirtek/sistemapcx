@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Inicio</title>
+    </h:head>
+
+    <h:body>
+
+        <head>
+            <style type="text/css">
+                body{
+                    background:#77AEC1;
+                }
+            </style>
+        </head>
+
+        <h:form id="menu">
+            <H3 style="color: #42606c; text-align: center;">SISTEMA VENTAS PCX</H3> 
+            <p:clock pattern="HH:mm:ss   dd/MM/yyyy"/>
+            <p:panel>
+
+                <p:tabMenu activeIndex="#{param.i}">
+                    <p:menuitem value="Datos Cliente" outcome="cliente" icon="ui-icon-person">
+                        <f:param name="i" value="0" />
+                    </p:menuitem>
+                    <p:menuitem value="Datos Producto" outcome="producto" icon="ui-icon-document">
+                        <f:param name="i" value="1" />
+                    </p:menuitem>
+                    <p:menuitem value="Datos Vendedor" outcome="vendedor" icon="ui-icon-person">
+                        <f:param name="i" value="2" />
+                    </p:menuitem>
+                    <p:menuitem value="Realizar Venta" outcome="venta" icon="ui-icon-star">
+                        <f:param name="i" value="1" />
+                    </p:menuitem>
+                </p:tabMenu>
+
+
+            </p:panel> 
+            <p:graphicImage url="electro.jpg" width="1280" height="720" />
+            <CENTER>2016 PCX</CENTER>
+            <CENTER>CASA MATRIZ VIÑA DEL MAR</CENTER>
+
+        </h:form>
+    </h:body>
+
+</html>
+

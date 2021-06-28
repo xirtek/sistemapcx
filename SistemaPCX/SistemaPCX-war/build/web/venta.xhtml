@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:head>
+        <title>Venta</title>
+        <style type="text/css">
+            body{
+                background:#77AEC1;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <H3 style="color: #42606c; text-align: center;">TIENDAS PCX</H3> 
+            <H3 style="color: #42606c; text-align: center;">78909898</H3> 
+            <H3 style="color: #42606c; text-align: center;">VIÑA DEL MAR</H3> 
+        </h:form>
+    </h:body>
+
+    <h:body>
+        <h:form id="menu">
+            <p:clock pattern="HH:mm:ss   dd/MM/yyyy"/>
+            <p:panel>      
+                <p:tabMenu activeIndex="#{param.i}">
+                    <p:menuitem value="Volver a Inicio" outcome="index" icon="ui-icon-star">
+                        <f:param name="i" value="0" />
+                    </p:menuitem>
+                    <p:menuitem value="Agregar Cliente" outcome="clienteNuevo" icon="ui-icon-person">
+                        <f:param name="i" value="1" />
+                    </p:menuitem>
+                </p:tabMenu>
+            </p:panel>
+        </h:form>
+    </h:body>
+
+    <br/>
+    <br/>
+
+    <h:body>
+
+        <h:form id="fi">
+            <p:growl id="msg" />
+
+            <h:panelGrid columns="2">
+                <p:outputLabel for="cboClientes" value="Cliente :" />
+                <p:selectOneMenu id="cboClientes" value="#{ventaBean.cliente.codCli}">
+                    <f:selectItems value="#{clienteBean.listCliente}" var="liscli" itemLabel="#{liscli.nombreCli}" itemValue="#{liscli.codCli}" />        
+                </p:selectOneMenu>
+                <p:outputLabel for="cboVendedores" value="Vendedor :" />
+                <p:selectOneMenu id="cboVendedores" value="#{ventaBean.vendedor.codVend}">
+                    <f:selectItems value="#{vendedorBean.listVendedor}" var="lisven" itemLabel="#{lisven.nomVend}" itemValue="#{lisven.codVend}" />        
+                </p:selectOneMenu>
+                <p:outputLabel for="cboProductos" value="Producto :" />
+                <p:selectOneMenu id="cboProductos" value="#{ventaBean.producto.codProducto}">
+                    <f:selectItems value="#{productoBean.listProducto}" var="lispro" itemLabel="#{lispro.nombreProducto}" itemValue="#{lispro.codProducto}" />        
+                </p:selectOneMenu>
+                <p:outputLabel value="Cantidad :"/>
+                <p:inputText value="#{ventaBean.cantidad}" required="true"/>
+                <p:commandButton actionListener="#{ventaBean.crear()}"
+                                 value="Agregar Producto" update=":fi,msg"/>
+            </h:panelGrid>
+
+            <br/>
+            <br/>
+
+            <p:dataTable id="tbla" value="#{ventaBean.ventas}" var="venb">
+                <p:column headerText="PRODUCTO">
+                    <h:outputText value="#{venb.productocodProducto.nombreProducto}"/>
+                </p:column>
+                <p:column headerText="CANTIDAD">
+                    <h:outputText value="#{venb.cantidad}"/>
+                </p:column>
+                <p:column headerText="PRECIO UNITARIO">
+                    <h:outputText value="#{venb.productocodProducto.precioUnitario}"/>
+                </p:column>
+                <p:column headerText="SUBTOTAL">
+                    <h:outputText value="#{venb.subTotal}"/>
+                </p:column>
+                <p:column>
+                    <div class="acciones-lista">
+                        <h:commandLink action="#{ventaBean.eliminar()}" type="submit" value="ELIMINAR">
+                            <f:setPropertyActionListener target="#{ventaBean.venta}" value="#{venb}"/>
+                        </h:commandLink>
+                    </div>
+                </p:column>
+
+
+            </p:dataTable>
+
+            <br/>
+            <br/>
+
+
+            <H1 style="color: #42606c; text-align: center;">TOTAL A PAGAR:</H1> 
+            <CENTER><H1 style="color: #42606c; text-align: center;">$</H1></CENTER>
+            <CENTER><h:outputText value="#{ventaBean.total()}" style="color: #42606c; font-size: 50px; "/></CENTER>
+            <CENTER><H1 style="color: #42606c; text-align: center;">pesos</H1></CENTER>
+
+
+            <br/>
+            <br/>
+
+            <p:commandButton actionListener="#{ventaBean.finalizarVenta()}" 
+                             value="Finalizar Venta" update=":fi,msg"/>
+
+
+
+        </h:form>
+
+    </h:body>
+
+</html>
+
